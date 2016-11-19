@@ -84,15 +84,19 @@ $(EXEC): $(OBJ)
 
 
 $(LIB_SHARED): $(OBJ_LIB)
+ifneq "$(strip $(OBJ_LIB))" ""
 	@ mkdir -p $(DIR_LIB)
 	@ echo "\t\033[1;35m[SO]\t[$(OPTIM)]\t$@\033[0m"
 	$(VERBOSE) $(LD) -shared -o $@ $^  $(LDFLAGS)
+endif
 
 
 $(LIB_STATIC): $(OBJ_LIB)
+ifneq "$(strip $(OBJ_LIB))" ""
 	@ mkdir -p $(DIR_LIB)
 	@ echo "\t\033[1;35m[AR]\t[$(OPTIM)]\t$@\033[0m"
 	$(VERBOSE) $(AR) crs $@ $^
+endif
 
 
 test:
